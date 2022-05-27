@@ -26,9 +26,9 @@ Run `yarn build-prod` to build the project. The build artifacts will be stored i
 
 > yarn build-prod
 
-> npm install -g angular-cli-ghpages
+> yarn install -g angular-cli-ghpages
 
-> npm run build-deploy
+> yarn build-deploy
 
 ## Running unit tests
 
