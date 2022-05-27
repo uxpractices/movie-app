@@ -1,0 +1,106 @@
+<p class="page-nav-title">
+  <mat-icon routerLink="/home/marvel" aria-hidden="false" aria-label="Example home icon">home</mat-icon>
+  <span class="vertical-align-super">
+    <span class="ma-icon" routerLink="/home/marvel" [routerLinkActive]="'is-active'">Home</span>
+    / Featured Page</span>
+</p>
+
+<p class="page-sub-title">Take a look at the featured movies of this month!</p>
+
+<div class="loading" *ngIf="loading$ | async" fxLayout="row" fxLayoutAlign="center">
+  <mat-spinner></mat-spinner>
+</div>
+
+<div
+  class="search-items"
+  fxLayout="row wrap"
+  fxLayout.lt-sm="column"
+  fxLayoutGap="32px"
+  fxLayoutAlign="flex-start"
+>
+  <ng-container *ngIf="movieDetails$ | async as movieDetails">
+    <ng-container *ngFor="let movie of movieDetails">
+      <div
+        fxFlex="0 1 calc(50% - 32px)"
+        fxFlex.lt-md="0 1 calc(50% - 32px)"
+        fxFlex.lt-sm="100%"
+      >
+        <div fxLayout.gt-sm="row">
+          <mat-card>
+            <div
+              [ngSwitch]="movie!.Poster === 'N/A' || movie!.Poster !== 'N/A'"
+            >
+              <img
+                mat-card-image
+                [ngClass.gt-sm]="'img-responsive'"
+                *ngSwitchCase="movie!.Poster !== 'N/A'"
+                [src]="movie!.Poster"
+              />
+              <img
+                mat-card-image
+                [ngClass.gt-sm]="'img-responsive'"
+                *ngSwitchCase="movie!.Poster === 'N/A'"
+                src="https://placeimg.com/300/415/any"
+              />
+            </div>
+          </mat-card>
+          <mat-card>
+            <mat-card-content>
+              <mat-card-title
+                >{{ movie!.Title }} ({{ movie!.Year }})</mat-card-title
+              >
+              <div
+                *ngIf="movie!.Year && movie!.Year !== 'N/A'"
+                class="text-success"
+              >
+                <p>
+                  <b>Release Year </b> : <span>{{ movie!.Year }}</span>
+                </p>
+              </div>
+              <div
+                *ngIf="movie!.Awards && movie!.Awards !== 'N/A'"
+                class="text-success"
+              >
+                <b>Awards</b>
+                <p>{{ movie!.Awards }}</p>
+              </div>
+              <div *ngIf="movie!.Plot && movie!.Plot !== 'N/A'">
+                <b>Summary</b>
+                <p>{{ movie!.Plot }}</p>
+              </div>
+              <div *ngIf="movie!.Production && movie!.Production !== 'N/A'">
+                <b>Production</b>
+                <p>{{ movie!.Production }}</p>
+              </div>
+              <div
+                *ngIf="movie!.imdbRating && movie!.imdbRating !== 'N/A'"
+                class="text-success"
+              >
+                <p>
+                  <b>Imdb Rating </b> : <span>{{ movie!.imdbRating }}</span> /
+                  <a
+                    href="http://www.imdb.com/title/{{ movie!.imdbID }}"
+                    target="_blank"
+                  >See more at Imdb</a
+                  >
+                </p>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+    </ng-container>
+  </ng-container>
+
+  <div *ngIf="error$ | async">
+    {{ error$ | async }}
+  </div>
+
+  <div *ngIf="isNotFound()">
+    <p>No movie found with that title</p>
+  </div>
+
+  <div *ngIf="isNotProvided()">
+    <p>Please provide a title to search for</p>
+  </div>
+</div>

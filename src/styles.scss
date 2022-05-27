@@ -1,1 +1,85 @@
 /* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+*:focus {
+  outline: none;
+}
+
+.img {
+  width: 100%;
+  margin-bottom: 18%;
+}
+
+.card-picture {
+  width: 23%;
+  margin-bottom: 2%;
+}
+
+.container {
+  min-height: 100%;
+  width: 100%;
+}
+
+.vertical-align-super {
+  vertical-align: super;
+}
+
+.search-form {
+  width: 100%;
+}
+
+.loading {
+  justify-content: center;
+  padding: 10px;
+  margin: 10px;
+}
+
+.page-sub-title {
+  font-size: 15px;
+  margin: 15px;
+  box-shadow: none;
+}
+
+.page-nav-title {
+  font-size: 13px;
+  margin: 15px;
+  box-shadow: none;
+}
+
+.mat-form-field-wrapper {
+  width: 100% !important;
+}
+
+.mat-card {
+  background-color: rgba(189, 231, 222, 0.45);
+}
+
+.mat-card-header-text {
+  margin: 0 !important;
+}
+
+.mat-card-title {
+  font-size: 19px;
+  line-height: 23px;
+}

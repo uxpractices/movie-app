@@ -1,0 +1,6 @@
+package.json
+package-lock.json
+dist
+commitlint.config.js
+src/main.ts
+src/test.ts

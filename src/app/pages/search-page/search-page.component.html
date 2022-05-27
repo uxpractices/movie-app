@@ -1,0 +1,163 @@
+<p class="page-nav-title">
+  <mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon>
+  <span class="vertical-align-super">Home / Search Page </span>
+</p>
+
+<div
+  fxLayout="row"
+  fxLayout.xs="column"
+  fxLayoutAlign="center"
+>
+  <p class="page-sub-title">
+    Welcome to Movie App. <br>
+    You can now search for your favorite movie here.
+  </p>
+</div>
+
+<div
+  fxLayout="row"
+  fxLayout.xs="column"
+  fxLayoutWrap
+  fxLayoutGap="0.5%"
+  fxLayoutAlign="center"
+>
+  <form
+    class="search-form"
+    fxLayout="row"
+    fxLayoutAlign="center"
+    (submit)="onSeachChange()"
+  >
+    <mat-form-field appearance="outline" class="search-full-width">
+      <mat-label>Search movies</mat-label>
+      <input
+        matInput
+        placeholder="Search movies"
+        [formControl]="searchFormControl"
+        [(ngModel)]="searchText"
+        [errorStateMatcher]="matcher"
+      />
+      <mat-error *ngIf="searchFormControl.hasError('required')">
+        Please enter a valid <strong>movie name</strong>.
+      </mat-error>
+      <mat-icon matSuffix (click)="onSeachChange()">search</mat-icon>
+    </mat-form-field>
+  </form>
+</div>
+
+<div class="loading" *ngIf="loading$ | async" fxLayout="row" fxLayoutAlign="center">
+  <mat-spinner></mat-spinner>
+</div>
+
+<div fxLayout="row" fxLayoutAlign="center">
+  <div *ngIf="error$ | async">
+    {{ error$ | async }}
+  </div>
+</div>
+
+<div
+  class="search-items"
+  fxLayout="row wrap"
+  fxLayout.lt-sm="column"
+  fxLayoutGap="32px"
+  fxLayoutAlign="flex-start"
+>
+  <ng-container *ngIf="movieDetails$ | async as movieDetails">
+    <ng-container *ngFor="let movie of movieDetails">
+    <div
+      fxFlex.gt-md="0 1 calc(20% - 32px)"
+      fxFlex.md="0 1 calc(33% - 32px)"
+      fxFlex.sm="0 1 calc(50% - 32px)"
+      fxFlex.lt-sm="100%"
+    >
+      <mat-card>
+        <div [ngSwitch]="movie!.Poster === 'N/A' || movie!.Poster !== 'N/A'">
+          <img
+            mat-card-image
+            [ngClass.gt-sm]="'img-responsive'"
+            *ngSwitchCase="movie!.Poster !== 'N/A'"
+            [src]="movie!.Poster"
+          />
+          <img
+            mat-card-image
+            class="img-responsive"
+            *ngSwitchCase="movie!.Poster === 'N/A'"
+            src="https://placeimg.com/300/415/any"
+          />
+        </div>
+        <mat-card-header>
+          <mat-card-title
+            >{{ movie!.Title }} ({{ movie!.Year }})</mat-card-title
+          >
+          <mat-card-subtitle>
+            <span *ngIf="movie!.Rated && movie!.Rated !== 'N/A'">
+              {{ movie!.Rated }} |
+            </span>
+            <span *ngIf="movie!.Runtime && movie!.Runtime !== 'N/A'">
+              {{ movie!.Runtime }} |
+            </span>
+            <span *ngIf="movie!.Language && movie!.Language !== 'N/A'">
+              {{ movie!.Language }} |
+            </span>
+            <span *ngIf="movie!.Released && movie!.Released !== 'N/A'">
+              {{ movie!.Released }}
+            </span>
+            <span *ngIf="movie!.Country && movie!.Country !== 'N/A'">
+              ({{ movie!.Country }})
+            </span>
+          </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <div>
+            <div *ngIf="movie!.Genre && movie!.Genre !== 'N/A'">
+              <b>Genre</b>
+              <ul>
+                <li *ngFor="let genre of movie!.Genre.split(',')">{{ genre }}</li>
+              </ul>
+            </div>
+            <div *ngIf="movie!.Director && movie!.Director !== 'N/A'">
+              <b>Director</b>
+              <ul>
+                <li *ngFor="let director of movie!.Director.split(',')">{{ director }}</li>
+              </ul>
+            </div>
+            <div *ngIf="movie!.Actors && movie!.Actors !== 'N/A'">
+              <b>Actors</b>
+              <ul >
+                <li *ngFor="let actor of movie!.Actors.split(',')">{{ actor }}</li>
+              </ul>
+            </div>
+            <div *ngIf="movie!.Writer && movie!.Writer !== 'N/A'">
+              <b>Writer</b>
+              <ul>
+                <li *ngFor="let writer of movie!.Writer.split(',')">{{ writer }}</li>
+              </ul>
+            </div>
+            <div *ngIf="movie!.Plot && movie!.Plot !== 'N/A'">
+              <b>Summary</b>
+              <p>{{ movie!.Plot }}</p>
+            </div>
+            <div *ngIf="movie!.Production && movie!.Production !== 'N/A'">
+              <b>Production</b>
+              <p>{{ movie!.Production }}</p>
+            </div>
+            <div
+              *ngIf="movie!.Awards && movie!.Awards !== 'N/A'"
+              class="text-success"
+            >
+              <b>Awards</b>
+              <p>{{ movie!.Awards }}</p>
+            </div>
+            <div>
+              <a
+                href="http://www.imdb.com/title/{{ movie!.imdbID }}"
+                target="_blank"
+                >See more at Imdb</a
+              >
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </ng-container>
+  </ng-container>
+</div>
