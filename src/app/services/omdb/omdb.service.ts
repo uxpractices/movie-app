@@ -8,10 +8,10 @@ import {
   Observable,
   of
 } from 'rxjs';
-import { OmdbConfig } from '../config/omdb-config';
-import { Movie, MovieDetails, MovieList } from '../models/movie.model';
+import { OmdbConfig } from '../../config/omdb-config';
+import { Movie, MovieDetails, MovieList } from '../../models/movie.model';
 import { mergeMap } from 'rxjs/operators';
-import { StateService } from './state/state.service';
+import { StateService } from '../state/state.service';
 
 @Injectable()
 export class OmdbService {

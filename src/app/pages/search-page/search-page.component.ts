@@ -6,7 +6,7 @@ import {
   Validators
 } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
-import { OmdbService } from '../../services/omdb.service';
+import { OmdbService } from '../../services/omdb/omdb.service';
 import { MovieDetails } from '../../models/movie.model';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';

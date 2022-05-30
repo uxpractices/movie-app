@@ -18,8 +18,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
-import { OmdbService } from './services/omdb.service';
-import { MovieService } from './services/movie.service';
+import { OmdbService } from './services/omdb/omdb.service';
+import { MovieService } from './services/movie/movie.service';
 import { StateService } from './services/state/state.service';
 
 @NgModule({

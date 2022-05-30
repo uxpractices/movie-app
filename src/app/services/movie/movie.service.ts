@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { MovieDetails } from '../models/movie.model';
-import { OmdbService } from './omdb.service';
+import { MovieDetails } from '../../models/movie.model';
+import { OmdbService } from '../omdb/omdb.service';
 
 @Injectable()
 export class MovieService {

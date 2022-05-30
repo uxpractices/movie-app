@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { MovieService } from '../../services/movie.service';
+import { MovieService } from '../../services/movie/movie.service';
 import { Observable } from 'rxjs';
 import { MovieDetails } from '../../models/movie.model';
-import { OmdbService } from '../../services/omdb.service';
+import { OmdbService } from '../../services/omdb/omdb.service';
 import { ActivatedRoute } from '@angular/router';
 import { StateService } from '../../services/state/state.service';
 
