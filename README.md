@@ -4,6 +4,9 @@ Movie App web application built using Angular v13. It uses the OMDb api to sourc
 
 When you search a movie, the top 5 responses for that movie will be returned. You can click on the title of each movie to see additional details for the film.
 
+The information will be based on IMDB data provided by a publicly available OMDB API. Documentation
+can be found at http://www.omdbapi.com.
+
 # Website Live URL
 https://uxpractices.github.io/movie-app/
 
